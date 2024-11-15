@@ -1,6 +1,6 @@
 import jwt from '@elysiajs/jwt'
 import Elysia, { t } from 'elysia'
-import schemas from '../libs/mongoose'
+import { db } from '../libs/mongoose'
 
 export const isAuthenticated = new Elysia()
 	.use(
@@ -25,6 +25,6 @@ export const isAuthenticated = new Elysia()
 	})
 
 export const getProjectData = new Elysia().use(isAuthenticated).derive({ as: 'global' }, async ({ verifiedToken }) => {
-	const project = await schemas.project.findOne({ _id: verifiedToken.projectId })
+	const project = await db.project.findOne({ _id: verifiedToken.projectId })
 	return { project }
 })
