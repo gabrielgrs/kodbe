@@ -1,4 +1,4 @@
-import { Schema, Types } from 'mongoose'
+import { Schema, type Types } from 'mongoose'
 import { type DocumentSchema, generateModel } from '../helpers'
 
 const status = ['EMAIL_VERIFICATION', 'ONBOARDING', 'FINISHED'] as const
@@ -28,7 +28,7 @@ const schema = new Schema<UserSchema>(
 		projects: [
 			{
 				project: {
-					type: Types.ObjectId,
+					type: Schema.Types.ObjectId,
 					ref: 'Project',
 					required: true,
 				},
